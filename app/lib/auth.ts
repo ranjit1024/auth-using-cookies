@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import NextAuth from "next-auth";
+
+
 
 
 declare module "next-auth" {
@@ -44,6 +45,7 @@ export const  authOption = {
       
      
   ],
+ 
   
   secret:process.env.NEXTUTH_SECRET,
   
@@ -57,7 +59,9 @@ export const  authOption = {
           }
           return session
      }
-      
-  
-   }
+   },
+   
+//    pages:{
+//     signIn:"/auth/login"
+//    }
   }
