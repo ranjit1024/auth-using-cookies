@@ -1,17 +1,18 @@
-import {handler} from "@/app/api/auth/[...nextauth]/route";
 
+
+import Navbar from "@/component/appbar";
 import { getServerSession } from "next-auth"
+import { authOption } from "../lib/auth";
 
-async function  getUser() {
-    const session = await getServerSession();
-    return session;
 
-}
 
-export default async function Home(){
-    const session = await getUser();
+export default async function (){
+    const session = await getServerSession(authOption);
+    return <div>
+        <Navbar/>
+        Server component <br />
+        {JSON.stringify(session)}
+    </div>
 
-    return <>
-        <div>{JSON.stringify(session?.user?.name)}</div>
-    </>
+
 }
