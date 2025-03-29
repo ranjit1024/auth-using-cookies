@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
+export const handler = NextAuth({
   providers: [
     CredentialsProvider({
         name:'Email',
@@ -11,7 +11,8 @@ const handler = NextAuth({
         },
 
         async authorize(credentials:any){
-            console.log(credentials)
+            console.log(credentials);
+            
 
             return {
                 id:"user1",
@@ -19,10 +20,20 @@ const handler = NextAuth({
                 email:'ranjitdas@gmail.com'
             }
         }
-    })
+    }),
+    
    
-]
-});
+],
+
+secret:process.env.NEXTUTH_SECRET,
+
+ callbacks:{
+   jwt:async ({token,user}) => {
+    console.log(token);
+    return token;
+   }
+ }
+})
 
 export const GET = handler;
 export const POST = handler;
