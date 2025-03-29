@@ -1,5 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth";
+
 
 declare module "next-auth" {
     interface Session {
@@ -32,6 +34,13 @@ export const  authOption = {
               }
           }
       }),
+
+      GoogleProvider({
+        clientId:process.env.GOOGLE_CLIENT_ID || "",
+        clientSecret:process.env.GOOGLE_CLINET_SECRET || "",
+
+      })
+      
       
      
   ],
